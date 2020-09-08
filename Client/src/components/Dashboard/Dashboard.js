@@ -9,7 +9,7 @@ class Dashboard extends Component {
     this.props.logoutUser();
   };
   testUserInfo = () => {
-    console.log(this.props.auth);
+    console.log(this.props.auth.user);
   };
 
   render() {
