@@ -28,7 +28,13 @@ class Navbar extends Component {
                 </Link>
                 <ul className="right hide-on-med-and-down">
                   <li>
+                    <Link to="/creator">Add room</Link>
+                  </li>
+                  <li>
                     <Link to="/dashboard">Dashboard</Link>
+                  </li>
+                  <li>
+                    <Link to="/rooms">Rooms</Link>
                   </li>
                   <li onClick={this.handleClick}>
                     <Link to="/">Logout</Link>

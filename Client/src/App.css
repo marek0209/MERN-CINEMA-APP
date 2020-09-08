@@ -1,38 +1,41 @@
 .App {
+  font-family: sans-serif;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: columns;
+}
+
+.array-row {
+  display: flex;
+  flex-direction: row;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.existingChair {
+  width: 10vh;
+  height: 10vh;
+  background-color: #7f8fa6;
+  box-sizing: border-box;
+  border: 1vh solid white;
+  border-radius: 10px;
+}
+.NotExistingChair {
+  width: 10vh;
+  height: 10vh;
+  background-color: red;
+  box-sizing: border-box;
+  border: 1vh solid white;
+  border-radius: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.guide {
+  padding: 1vh;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.guide > div {
+  align-self: center !important;
 }
