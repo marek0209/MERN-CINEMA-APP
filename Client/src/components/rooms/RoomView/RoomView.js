@@ -8,7 +8,7 @@ import {
   getRoomsPending,
 } from "../../../reducers/roomReducer";
 
-import LoadingSpinner from "./Loader";
+import LoadingSpinner from "../../layout/Loader";
 import RoomArrayView from "./RoomArrayView";
 // import RoomCreatorTest from "./RoomCreatorTest";
 // import RoomList from "./RoomList";

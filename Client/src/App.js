@@ -13,6 +13,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import RoomCreator from "./components/rooms/RoomCreator/RoomCreator";
 import RoomView from "./components/rooms/RoomView/RoomView";
 import MovieCreator from "./components/movies/MovieCreator";
+import MovieView from "./components/movies/MovieView";
 import jwt_decode from "jwt-decode";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import "./App.css";
@@ -58,6 +59,7 @@ class App extends Component {
                 path="/movie-creator"
                 component={MovieCreator}
               />
+              <PrivateRoute exact path="/movies" component={MovieView} />
             </Switch>
           </div>
         </Router>
