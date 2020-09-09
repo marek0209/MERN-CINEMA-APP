@@ -40,6 +40,9 @@ class Navbar extends Component {
                   <li>
                     <Link to="/rooms">Rooms</Link>
                   </li>
+                  <li>
+                    <Link to="/movies">Movies</Link>
+                  </li>
                   <li onClick={this.handleClick}>
                     <Link to="/">Logout</Link>
                   </li>
