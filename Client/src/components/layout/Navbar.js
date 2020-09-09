@@ -10,6 +10,7 @@ class Navbar extends Component {
     console.log("work");
   };
   render() {
+    console.log(this.props.history);
     if (localStorage.getItem("jwtToken")) {
       return (
         <>
@@ -28,7 +29,10 @@ class Navbar extends Component {
                 </Link>
                 <ul className="right hide-on-med-and-down">
                   <li>
-                    <Link to="/creator">Add room</Link>
+                    <Link to="/room-creator">Add room</Link>
+                  </li>
+                  <li>
+                    <Link to="/movie-creator">Add movie</Link>
                   </li>
                   <li>
                     <Link to="/dashboard">Dashboard</Link>

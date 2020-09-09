@@ -12,6 +12,7 @@ import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/Dashboard/Dashboard";
 import RoomCreator from "./components/rooms/RoomCreator/RoomCreator";
 import RoomView from "./components/rooms/RoomView/RoomView";
+import MovieCreator from "./components/movies/MovieCreator";
 import jwt_decode from "jwt-decode";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import "./App.css";
@@ -46,8 +47,17 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <Switch>
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <PrivateRoute exact path="/creator" component={RoomCreator} />
+              <PrivateRoute
+                exact
+                path="/room-creator"
+                component={RoomCreator}
+              />
               <PrivateRoute exact path="/rooms" component={RoomView} />
+              <PrivateRoute
+                exact
+                path="/movie-creator"
+                component={MovieCreator}
+              />
             </Switch>
           </div>
         </Router>
