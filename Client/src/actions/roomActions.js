@@ -7,7 +7,7 @@ import {
   CREATE_ROOMS_ERROR,
 } from "./types";
 
-export const createRoomsAction = (roomData, token) => (dispatch) => {
+export const createRoomsAction = (roomData, token, history) => (dispatch) => {
   axios
     .post("http://localhost:5000/api/rooms/", roomData, {
       headers: {
@@ -19,6 +19,7 @@ export const createRoomsAction = (roomData, token) => (dispatch) => {
         throw res.error;
       } else {
         dispatch(createRoomsSuccess(res.data));
+        history.push("/rooms");
         return res.data;
       }
     })

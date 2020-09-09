@@ -26,8 +26,8 @@ class RoomView extends Component {
   }
 
   shouldComponentRender() {
-    if (this.props.pending === false) return false;
-    return true;
+    if (this.props.rooms.pending === false) return true;
+    return false;
   }
 
   render() {
