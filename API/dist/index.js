@@ -1,12 +1,20 @@
 "use strict";
 
+var _dotenv = _interopRequireDefault(require("dotenv"));
+
 var _express = _interopRequireDefault(require("express"));
 
 var _cors = _interopRequireDefault(require("cors"));
 
+var _bodyParser = _interopRequireDefault(require("body-parser"));
+
 var _config = _interopRequireDefault(require("../config/config"));
 
-var _bodyParser = _interopRequireDefault(require("body-parser"));
+var _rooms = _interopRequireDefault(require("./routes/rooms"));
+
+var _auth = _interopRequireDefault(require("./routes/auth"));
+
+var _movies = _interopRequireDefault(require("./routes/movies"));
 
 var _database = _interopRequireDefault(require("../config/database"));
 
@@ -14,7 +22,12 @@ var _mongoose = _interopRequireDefault(require("mongoose"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Connect to database
+_dotenv.default.config({
+  path: ".env"
+});
+
+console.log("Secret for JWT: ", process.env.JWT_SECRET);
+
 _mongoose.default.connect(_database.default.mongoUrl, {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -33,7 +46,11 @@ app.use((0, _cors.default)());
 app.use(_bodyParser.default.urlencoded({
   extended: false
 }));
-app.use(_bodyParser.default.json());
+app.use(_bodyParser.default.json()); // routes config
+
+app.use("/api/rooms", (0, _rooms.default)());
+app.use("/api/auth", (0, _auth.default)());
+app.use("/api/movies", (0, _movies.default)());
 app.listen(_config.default.server.port, () => {
   console.log("API server works at port:" + _config.default.server.port);
 });

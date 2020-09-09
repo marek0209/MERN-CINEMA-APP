@@ -8,6 +8,7 @@ import bodyParser from "body-parser";
 import config from "../config/config";
 import rooms from "./routes/rooms";
 import auth from "./routes/auth";
+import movies from "./routes/movies";
 // Connect to database
 import dbConfig from "../config/database";
 import mongoose from "mongoose";
@@ -34,6 +35,7 @@ app.use(bodyParser.json());
 // routes config
 app.use("/api/rooms", rooms());
 app.use("/api/auth", auth());
+app.use("/api/movies", movies());
 
 app.listen(config.server.port, () => {
   console.log(`API server works at port:` + config.server.port);
