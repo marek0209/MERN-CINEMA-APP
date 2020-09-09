@@ -60,8 +60,9 @@ class StepTwo extends React.Component {
       roomSeatsPlan: this.state.layout,
     };
     let token = localStorage.getItem("jwtToken");
-    this.props.createRooms(newRoom, token);
-    this.props.history.push("/rooms");
+    let history = this.props.history;
+    this.props.createRooms(newRoom, token, history);
+    // this.props.history.push("/rooms");
   };
 
   render() {
