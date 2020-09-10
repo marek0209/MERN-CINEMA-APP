@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import URLSlugs from "mongoose-url-slugs";
 
 const Movie = mongoose.Schema({
@@ -14,8 +14,12 @@ const Movie = mongoose.Schema({
     type: String,
     require: true,
   },
+  seanses: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Seanse",
+    },
+  ],
 });
-
-Movie.plugin(URLSlugs("title", { field: "slug", update: true }));
 
 export default mongoose.model("Movie", Movie);

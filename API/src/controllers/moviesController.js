@@ -2,14 +2,14 @@ import Movie from "../models/movie";
 
 export default {
   async findOne(req, res, next) {
-    const movie = await Movie.findOne({ slug: req.params.slug });
+    const movie = await Movie.findOne({ _id: req.params._id });
     if (!movie) return next();
     return res.status(200).send({ data: movie });
   },
 
   async findAll(req, res) {
-    const rooms = await Movie.find().sort({ title: "desc" });
-    return res.status(200).send({ data: rooms });
+    const movies = await Movie.find().sort({ title: "desc" });
+    return res.status(200).send({ data: movies });
   },
 
   async create(req, res) {
@@ -26,10 +26,10 @@ export default {
   },
 
   async update(req, res, next) {
-    const movie = await Movie.find({ slug: req.params.slug });
+    const movie = await Movie.find({ _id: req.params._id });
     if (!movie) return next();
 
-    movie.title = req.body.roomName;
+    movie.title = req.body.movieName;
     movie.movieDescription = req.body.movieDescription;
     movie.movieImgUrl = req.body.movieImgUrl;
 
@@ -39,7 +39,7 @@ export default {
   },
 
   async remove(req, res, next) {
-    const movie = await Movie.findOne({ slug: req.params.slug });
+    const movie = await Movie.findOne({ _id: req.params._id });
     if (!movie) return next();
     await movie.remove();
 
