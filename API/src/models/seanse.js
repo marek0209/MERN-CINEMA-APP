@@ -3,7 +3,7 @@ import URLSlugs from "mongoose-url-slugs";
 
 const Seanse = mongoose.Schema({
   date: {
-    type: Date,
+    type: String,
     require: true,
   },
   hour: {

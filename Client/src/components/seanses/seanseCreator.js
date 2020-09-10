@@ -1,15 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { createMoviesAction } from "../../actions/movieActions";
-import { getMoviesError, getMessages } from "../../reducers/movieReducer";
-class MovieCreator extends React.Component {
+import { createSeansesAction } from "../../actions/seanseAction";
+import { getSeansesError, getMessages } from "../../reducers/seanseReducer";
+import DatePicker from "./DatePicker";
+import moment from "moment";
+import MovieSelector from "./MovieSelector";
+import RoomSelector from "./RoomSelector";
+class SeanseCreator extends React.Component {
   constructor() {
     super();
     this.state = {
-      title: "",
-      movieDescription: "",
-      movieImgUrl: "",
+      date: undefined,
+      hour: "",
+      movie: undefined,
+      room: "",
+      bookings: [],
     };
   }
 
@@ -20,46 +26,52 @@ class MovieCreator extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    let newMovie = {
-      title: this.state.title,
-      movieDescription: this.state.movieDescription,
-      movieImgUrl: this.state.movieImgUrl,
+    let newSeanse = {
+      date: this.state.date,
+      hour: this.state.hour,
+      movie: this.state.movie,
+      bookings: this.state.bookings,
     };
     let token = localStorage.getItem("jwtToken");
     let history = this.props.history;
     console.log(this.props);
-    this.props.createMovies(newMovie, token, history);
+    this.props.createSeanses(newSeanse, token, history);
+    console.log(newSeanse, "Data send to api");
   };
 
   getDate = (data) => {
-    console.log(data);
+    let date = moment(data).format("DD-MM-YYYY");
+    this.setState({ date: date });
+  };
+
+  getMovieId = (id) => {
+    this.setState({ movie: id });
+  };
+
+  getRoomId = (room) => {
+    console.log(room.roomSeatsPlan);
+    let newBookingPlan = room.roomSeatsPlan;
+    this.setState({ bookings: newBookingPlan });
+    console.log(this.state.bookings);
   };
 
   render() {
     return (
       <>
-        <h1>Let's create new movie</h1>
+        <h1>Let's create new seanse</h1>
+
         <form onSubmit={this.onSubmit}>
           <div className="row">
             <div className="col s3"></div>
             <div className="col s3">
-              {/* Title
-              <input
-                onChange={this.onChange}
-                id="title"
-                type="text"
-                className="input-field inline"
-              /> */}
+              Movie
+              <MovieSelector getMovieId={this.getMovieId} />
             </div>
 
             <div className="col s3">
-              Movie description
-              <input
-                onChange={this.onChange}
-                id="movieDescription"
-                type="text"
-                className="input-field inline"
-              />
+              Date
+              <br></br>
+              <DatePicker getDate={this.getDate} />
             </div>
             <div className="col s3"></div>
           </div>
@@ -67,14 +79,19 @@ class MovieCreator extends React.Component {
           <div className="row">
             <div className="col s3"></div>
             <div className="col s3">
-              Movie image url
+              Hour
               <input
                 onChange={this.onChange}
-                id="movieImgUrl"
+                id="hour"
                 type="text"
                 className="input-field inline"
               />
             </div>
+            <div className="col s3">
+              Room
+              <RoomSelector getRoomId={this.getRoomId} />
+            </div>
+            <div className="col s3"></div>
           </div>
 
           <button
@@ -96,7 +113,7 @@ class MovieCreator extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  error: getMoviesError(state),
+  error: getSeansesError(state),
   messages: getMessages(state),
   auth: state.auth,
 });
@@ -104,9 +121,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      createMovies: createMoviesAction,
+      createSeanses: createSeansesAction,
     },
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieCreator);
+export default connect(mapStateToProps, mapDispatchToProps)(SeanseCreator);

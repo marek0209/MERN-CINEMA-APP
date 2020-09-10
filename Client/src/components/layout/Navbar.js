@@ -7,10 +7,8 @@ import { connect } from "react-redux";
 class Navbar extends Component {
   handleClick = (e) => {
     this.props.logoutUser();
-    console.log("work");
   };
   render() {
-    console.log(this.props.history);
     if (localStorage.getItem("jwtToken")) {
       return (
         <>
@@ -33,6 +31,9 @@ class Navbar extends Component {
                   </li>
                   <li>
                     <Link to="/movie-creator">Add movie</Link>
+                  </li>
+                  <li>
+                    <Link to="/seanse-creator">Add seanse</Link>
                   </li>
                   <li>
                     <Link to="/dashboard">Dashboard</Link>
