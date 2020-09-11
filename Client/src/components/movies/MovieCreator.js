@@ -43,13 +43,13 @@ class MovieCreator extends React.Component {
           <div className="row">
             <div className="col s3"></div>
             <div className="col s3">
-              {/* Title
+              Title
               <input
                 onChange={this.onChange}
                 id="title"
                 type="text"
                 className="input-field inline"
-              /> */}
+              />
             </div>
 
             <div className="col s3">

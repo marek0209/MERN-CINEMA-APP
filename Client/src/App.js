@@ -15,6 +15,7 @@ import RoomView from "./components/rooms/RoomView/RoomView";
 import MovieCreator from "./components/movies/MovieCreator";
 import MovieView from "./components/movies/MovieView";
 import SeanseCreator from "./components/seanses/seanseCreator";
+import SeanseView from "./components/seanses/SeamseView";
 import jwt_decode from "jwt-decode";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import "./App.css";
@@ -66,6 +67,7 @@ class App extends Component {
                 path="/seanse-creator"
                 component={SeanseCreator}
               />
+              <PrivateRoute exact path="/seanses" component={SeanseView} />
             </Switch>
           </div>
         </Router>

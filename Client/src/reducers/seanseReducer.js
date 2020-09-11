@@ -16,17 +16,20 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
     case FETCH_SEANSES_PENDING:
+      console.log("Pending");
       return {
         ...state,
         pending: true,
       };
     case FETCH_SEANSES_SUCCESS:
+      console.log("reducer", action.seanses);
       return {
         ...state,
         pending: false,
         seanses: action.seanses,
       };
     case FETCH_SEANSES_ERROR:
+      console.log(action.error);
       return {
         ...state,
         pending: false,
