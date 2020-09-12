@@ -6,20 +6,20 @@ import seansesController from "../controllers/seansesController";
 export default () => {
   const api = Router();
 
-  // GET /rooms/:slug
-  api.get("/:slug", catchAsync(seansesController.findOne));
+  // GET /seanses/:id
+  api.get("/:id", catchAsync(seansesController.findOne));
 
-  // GET /rooms
+  // GET /seanses
   api.get("/", catchAsync(seansesController.findAll));
 
-  // POST /rooms
+  // POST /seanses
   api.post("/", catchAsync(seansesController.create));
 
-  // PUT /rooms/:slug
-  api.put("/:slug", jwtAuth, catchAsync(seansesController.update));
+  // PUT /seanses/:id
+  api.put("/:id", jwtAuth, catchAsync(seansesController.update));
 
-  // DELETE /rooms/:slug
-  api.delete("/:slug", jwtAuth, catchAsync(seansesController.remove));
+  // DELETE /seanses/:id
+  api.delete("/:id", jwtAuth, catchAsync(seansesController.remove));
 
   return api;
 };

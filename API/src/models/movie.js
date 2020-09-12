@@ -1,5 +1,4 @@
 import mongoose, { Schema } from "mongoose";
-import URLSlugs from "mongoose-url-slugs";
 
 const Movie = mongoose.Schema({
   title: {
@@ -14,12 +13,6 @@ const Movie = mongoose.Schema({
     type: String,
     require: true,
   },
-  seanses: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Seanse",
-    },
-  ],
 });
 
 export default mongoose.model("Movie", Movie);

@@ -1,10 +1,12 @@
 import Movie from "../models/movie";
+import Seances from "../models/seanse";
 
 export default {
   async findOne(req, res, next) {
-    const movie = await Movie.findOne({ _id: req.params._id });
+    const movie = await Movie.findOne({ _id: req.params.id });
+    const seances = await Seances.find({ movie: req.params.id });
     if (!movie) return next();
-    return res.status(200).send({ data: movie });
+    return res.status(200).send({ movie: movie, seances: seances });
   },
 
   async findAll(req, res) {
@@ -26,7 +28,7 @@ export default {
   },
 
   async update(req, res, next) {
-    const movie = await Movie.find({ _id: req.params._id });
+    const movie = await Movie.find({ _id: req.params.id });
     if (!movie) return next();
 
     movie.title = req.body.movieName;
@@ -39,7 +41,7 @@ export default {
   },
 
   async remove(req, res, next) {
-    const movie = await Movie.findOne({ _id: req.params._id });
+    const movie = await Movie.findOne({ _id: req.params.id });
     if (!movie) return next();
     await movie.remove();
 

@@ -1,8 +1,9 @@
 import Seanse from "../models/seanse";
+import Movie from "../models/movie";
 
 export default {
   async findOne(req, res, next) {
-    const seanse = await Seanse.findOne({ _id: req.params._id });
+    const seanse = await Seanse.findOne({ _id: req.params.id });
     if (!seanse) return next();
     return res.status(200).send({ data: seanse });
   },
@@ -20,13 +21,15 @@ export default {
       bookings: req.body.bookings,
     }).save();
 
+    const movie = await Movie.findOne({ _id: req.params.id });
+
     return res
       .status(201)
       .send({ data: seanse, message: `Seanse was created` });
   },
 
   async update(req, res, next) {
-    const seanse = await Seanse.find({ _id: req.params._id });
+    const seanse = await Seanse.find({ _id: req.params.id });
     if (!seanse) return next();
 
     seanse.date = req.body.date;
@@ -42,7 +45,7 @@ export default {
   },
 
   async remove(req, res, next) {
-    const seanse = await Seanse.findOne({ _id: req.params._id });
+    const seanse = await Seanse.findOne({ _id: req.params.id });
     if (!seanse) return next();
     await seanse.remove();
 

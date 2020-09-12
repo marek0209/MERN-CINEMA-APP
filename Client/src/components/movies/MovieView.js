@@ -30,6 +30,7 @@ class MovieView extends Component {
 
   render() {
     const { movies, error } = this.props.movies;
+    console.log(movies);
     if (!this.shouldComponentRender()) return <LoadingSpinner />;
 
     return (
