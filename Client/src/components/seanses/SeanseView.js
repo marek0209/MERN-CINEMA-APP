@@ -23,7 +23,6 @@ class SeanseView extends Component {
   }
 
   shouldComponentRender() {
-    console.log(this.props);
     if (this.props.seanses.pending === false) return true;
     return false;
   }

@@ -32,6 +32,7 @@ class SeanseCreator extends React.Component {
       movie: this.state.movie,
       bookings: this.state.bookings,
     };
+    console.log(typeof this.state.date);
     let token = localStorage.getItem("jwtToken");
     let history = this.props.history;
     console.log(this.props);
@@ -40,8 +41,7 @@ class SeanseCreator extends React.Component {
   };
 
   getDate = (data) => {
-    let date = moment(data).format("DD-MM-YYYY");
-    this.setState({ date: date });
+    this.setState({ date: data });
   };
 
   getMovieId = (id) => {
