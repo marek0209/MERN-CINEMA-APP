@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { createSeansesAction } from "../../actions/seanseAction";
 import { getSeansesError, getMessages } from "../../reducers/seanseReducer";
 import DatePicker from "./DatePicker";
-import moment from "moment";
 import MovieSelector from "./MovieSelector";
 import RoomSelector from "./RoomSelector";
 class SeanseCreator extends React.Component {

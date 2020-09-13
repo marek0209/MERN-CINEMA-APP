@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import MovieView from "../movies/MovieView";
 
 class Landing extends Component {
   render() {
+    if (localStorage.getItem("jwtToken")) {
+      return <MovieView />;
+    }
     return (
       <div style={{ height: "75vh" }} className="container valign-wrapper">
         <div className="row">

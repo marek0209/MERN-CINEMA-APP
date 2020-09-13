@@ -38,22 +38,8 @@ class MovieSelector extends Component {
     if (!this.shouldComponentRender()) return <LoadingSpinner />;
 
     return (
-      //   <div className="movie-list-wrapper">
-      //     {error && <span className="movie-list-error">{error}</span>}
-
-      //     {movies.map((movie) => (
-      //       <div className="movie-box" key={movie._id}>
-      //         <h4>{movie.title}</h4>
-      //         <div className="card-image">
-      //           <img src={movie.movieImgUrl} alt="" />
-      //         </div>
-      //         <div className="card-content">
-      //           <p>{movie.movieDescription}</p>
-      //         </div>
-      //       </div>
-      //     ))}
-      //   </div>
       <>
+        <div>{error}</div>
         <select
           className="select-css"
           id="exampleFormControlSelect1"

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { fetchMoviesAction } from "../../actions/movieActions";
+import { withRouter } from "react-router-dom";
 import {
   getMoviesError,
   getMovies,
@@ -9,7 +10,6 @@ import {
 } from "../../reducers/movieReducer";
 
 import LoadingSpinner from "../layout/Loader";
-import MovieSeances from "./MovieSeances";
 import "./MovieViewStyle.css";
 
 class MovieView extends Component {
@@ -30,8 +30,8 @@ class MovieView extends Component {
   }
 
   goToSeance = (e) => {
-    console.log(e.target.dataset.id);
-    let id = e.target.dataset.id;
+    console.log(e.target.dataset.movieid);
+    let id = e.target.dataset.movieid;
     this.props.history.push({
       pathname: "/movie-seance",
       state: { id: id },
@@ -54,7 +54,7 @@ class MovieView extends Component {
               <p>{movie.movieDescription}</p>
             </div>
             <div className="seances">
-              <button onClick={this.goToSeance} data-id={movie._id}>
+              <button onClick={this.goToSeance} data-movieid={movie._id}>
                 Seances
               </button>
             </div>
@@ -79,4 +79,6 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieView);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(MovieView)
+);

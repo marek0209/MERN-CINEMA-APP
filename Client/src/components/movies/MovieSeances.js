@@ -1,14 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 import { fetchMovieSeancesAction } from "../../actions/movieSeancesActions";
 import PropTypes from "prop-types";
 import Moment from "react-moment";
-import {
-  getMoviesError,
-  getSeances,
-  getMovieSeancesPending,
-} from "../../reducers/movieSeancesReducer";
 
 import LoadingSpinner from "../layout/Loader";
 import "./MovieViewStyle.css";
