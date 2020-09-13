@@ -4,6 +4,7 @@ import errorReducer from "./errorReducer";
 import roomReducer from "./roomReducer";
 import movieReducer from "./movieReducer";
 import seanseReducer from "./seanseReducer";
+import movieSeancesReducer from "./movieSeancesReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   rooms: roomReducer,
   movies: movieReducer,
   seanses: seanseReducer,
+  movieSeances: movieSeancesReducer,
 });

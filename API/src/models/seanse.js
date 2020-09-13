@@ -1,5 +1,4 @@
 import mongoose, { Schema } from "mongoose";
-import URLSlugs from "mongoose-url-slugs";
 
 const Seanse = mongoose.Schema({
   date: {

@@ -20,6 +20,7 @@ export default function (state = initialState, action) {
         ...state,
         pending: true,
       };
+
     case FETCH_MOVIES_SUCCESS:
       return {
         ...state,

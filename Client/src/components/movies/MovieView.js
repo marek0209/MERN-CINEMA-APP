@@ -9,6 +9,7 @@ import {
 } from "../../reducers/movieReducer";
 
 import LoadingSpinner from "../layout/Loader";
+import MovieSeances from "./MovieSeances";
 import "./MovieViewStyle.css";
 
 class MovieView extends Component {
@@ -28,11 +29,17 @@ class MovieView extends Component {
     return false;
   }
 
+  goToSeance = (e) => {
+    console.log(e.target.dataset.id);
+    let id = e.target.dataset.id;
+    this.props.history.push({
+      pathname: "/movie-seance",
+      state: { id: id },
+    });
+  };
   render() {
     const { movies, error } = this.props.movies;
-    console.log(movies);
     if (!this.shouldComponentRender()) return <LoadingSpinner />;
-
     return (
       <div className="movie-list-wrapper">
         {error && <span className="movie-list-error">{error}</span>}
@@ -45,6 +52,11 @@ class MovieView extends Component {
             </div>
             <div className="card-content">
               <p>{movie.movieDescription}</p>
+            </div>
+            <div className="seances">
+              <button onClick={this.goToSeance} data-id={movie._id}>
+                Seances
+              </button>
             </div>
           </div>
         ))}

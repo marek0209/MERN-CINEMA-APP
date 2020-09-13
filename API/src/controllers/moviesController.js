@@ -10,7 +10,9 @@ export default {
   },
 
   async findAll(req, res) {
-    const movies = await Movie.find().sort({ title: "desc" });
+    const movies = await Movie.find()
+      .sort({ title: "desc" })
+      .populate("seanses");
     return res.status(200).send({ data: movies });
   },
 

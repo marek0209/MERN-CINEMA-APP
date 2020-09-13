@@ -16,6 +16,7 @@ import MovieCreator from "./components/movies/MovieCreator";
 import MovieView from "./components/movies/MovieView";
 import SeanseCreator from "./components/seanses/SeanseCreator";
 import SeanseView from "./components/seanses/SeanseView";
+import MovieSeances from "./components/movies/MovieSeances";
 import jwt_decode from "jwt-decode";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import "./App.css";
@@ -62,6 +63,11 @@ class App extends Component {
                 component={MovieCreator}
               />
               <PrivateRoute exact path="/movies" component={MovieView} />
+              <PrivateRoute
+                exact
+                path="/movie-seance"
+                component={MovieSeances}
+              />
               <PrivateRoute
                 exact
                 path="/seanse-creator"
