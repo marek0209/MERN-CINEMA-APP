@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchMovieSeancesAction } from "../../actions/movieSeancesActions";
-import PropTypes from "prop-types";
 import Moment from "react-moment";
-
+import MovieSeanceBooking from "./MovieSeanceBooking";
 import LoadingSpinner from "../layout/Loader";
 import "./MovieViewStyle.css";
 
 class MovieSeances extends Component {
   constructor(props) {
     super(props);
+
+    this.state = { isClicked: false };
 
     this.shouldComponentRender = this.shouldComponentRender.bind(this);
   }
@@ -25,32 +26,46 @@ class MovieSeances extends Component {
     if (this.props.isLoading === false) return true;
     return false;
   }
+  handleClick = (seance) => {
+    this.setState({ seance: seance });
+    console.log(seance, "seance");
+
+    this.setState({ isClicked: true });
+  };
 
   render() {
     console.log(this.props.seances, "render");
     let seances = this.props.seances;
 
     if (!this.shouldComponentRender()) return <LoadingSpinner />;
+    if (!this.state.isClicked)
+      return (
+        <>
+          {seances.map((seance) => (
+            <div key={seance.date}>
+              <Moment format="DD-MM-YYYY" date={seance.date} />
+              <br></br>
+              {seance.hour}
+              <br></br>
+              <button
+                data-seanseid={seance._id}
+                onClick={() => {
+                  this.handleClick(seance);
+                }}
+              >
+                Book seats
+              </button>
+            </div>
+          ))}
+        </>
+      );
     return (
       <>
-        {seances.map((seance) => (
-          <div key={seance.date}>
-            <Moment format="DD-MM-YYYY" date={seance.date} />
-            <br></br>
-            {seance.hour}
-            <br></br>
-            <button data-seanseId={seance._id}>Book seats</button>
-          </div>
-        ))}
+        <MovieSeanceBooking seance={this.state.seance} />
       </>
     );
   }
 }
-MovieSeances.propTypes = {
-  fetchMovieSeancesAction: PropTypes.func.isRequired,
-  seances: PropTypes.object.isRequired,
-  error: PropTypes.object.isRequired,
-};
 
 const mapStateToProps = (state) => ({
   isLoading: state.movieSeances.isLoading,

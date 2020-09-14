@@ -13,22 +13,6 @@
   flex-direction: row;
   justify-content: center;
 }
-.existingChair {
-  width: 10vh;
-  height: 10vh;
-  background-color: #7f8fa6;
-  box-sizing: border-box;
-  border: 1vh solid white;
-  border-radius: 10px;
-}
-.NotExistingChair {
-  width: 10vh;
-  height: 10vh;
-  background-color: red;
-  box-sizing: border-box;
-  border: 1vh solid white;
-  border-radius: 10px;
-}
 
 .guide {
   padding: 1vh;

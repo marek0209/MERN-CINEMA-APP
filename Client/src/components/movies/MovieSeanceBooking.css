@@ -1,0 +1,20 @@
+.existingChair {
+  width: 10vh;
+  height: 10vh;
+  background-color: #7f8fa6;
+  box-sizing: border-box;
+  border: 1vh solid white;
+  border-radius: 10px;
+}
+.notExistingChair {
+  width: 10vh;
+  height: 10vh;
+  background-color: transparent !important;
+  box-sizing: border-box;
+  border: 1vh solid white;
+  border-radius: 10px;
+}
+
+.booked {
+  background-color: red !important;
+}

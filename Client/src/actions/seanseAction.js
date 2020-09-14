@@ -5,6 +5,7 @@ import {
   FETCH_SEANSES_ERROR,
   CREATE_SEANSES_SUCCESS,
   CREATE_SEANSES_ERROR,
+  UPDATE_SEANSES_SUCCESS,
 } from "./types";
 
 //Create and send new seanse to API
@@ -49,6 +50,32 @@ export function fetchSeansesAction() {
   };
 }
 
+export const updateSeanseAction = (id, bookings, token, history) => (
+  dispatch
+) => {
+  axios
+    .put(
+      "http://localhost:5000/api/seanses/" + id,
+      { bookings: bookings },
+      {
+        headers: {
+          Authorization: `${token}`,
+        },
+      }
+    )
+    .then((res) => {
+      if (res.error) {
+        throw res.error;
+      } else {
+        dispatch(UpdateSeansesSuccess(res.data));
+        console.log(res.data);
+        history.push("/seanses");
+        return res.data;
+      }
+    })
+    .catch((err) => dispatch(createSeansesError(err)));
+};
+
 function fetchSeansesPending() {
   return {
     type: FETCH_SEANSES_PENDING,
@@ -72,6 +99,12 @@ function fetchSeansesError(error) {
 function createSeansesSuccess(messages) {
   return {
     type: CREATE_SEANSES_SUCCESS,
+    messages: messages,
+  };
+}
+function UpdateSeansesSuccess(messages) {
+  return {
+    type: UPDATE_SEANSES_SUCCESS,
     messages: messages,
   };
 }

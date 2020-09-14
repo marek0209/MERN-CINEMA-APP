@@ -29,12 +29,9 @@ export default {
   },
 
   async update(req, res, next) {
-    const seanse = await Seanse.find({ _id: req.params.id });
+    const seanse = await Seanse.findOne({ _id: req.params.id });
     if (!seanse) return next();
 
-    seanse.date = req.body.date;
-    seanse.hour = req.body.hour;
-    seanse.movie = req.body.movie;
     seanse.bookings = req.body.bookings;
 
     await seanse.save();

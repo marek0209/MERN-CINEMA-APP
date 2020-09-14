@@ -4,6 +4,7 @@ import {
   FETCH_SEANSES_ERROR,
   CREATE_SEANSES_ERROR,
   CREATE_SEANSES_SUCCESS,
+  UPDATE_SEANSES_SUCCESS,
 } from "../actions/types";
 
 const initialState = {
@@ -46,6 +47,8 @@ export default function (state = initialState, action) {
         ...state,
         messages: action.messages,
       };
+    case UPDATE_SEANSES_SUCCESS:
+      return { ...state, messages: action.messages };
     default:
       return state;
   }
