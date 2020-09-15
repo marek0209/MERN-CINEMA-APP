@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { createRoomsAction } from "../../../actions/roomActions";
 import { getRoomsError, getMessages } from "../../../reducers/roomReducer";
+import "./StepTwo.css";
 
 class StepTwo extends React.Component {
   constructor() {
@@ -42,7 +43,7 @@ class StepTwo extends React.Component {
     } else {
       return (
         <div
-          className="NotExistingChair"
+          className="notExistingChair"
           onClick={this.seatsClick}
           data-exists={value}
           data-row={row}

@@ -1,11 +1,12 @@
 import React from "react";
+import "./RoomArrayView.css";
 function RoomArrayView(props) {
   const roomSeatsPlan = props.arr;
   function conditionalRender(value) {
     if (value) {
       return <div className="existingChair"></div>;
     } else {
-      return <div className="NotExistingChair"></div>;
+      return <div className="notExistingChair"></div>;
     }
   }
 
