@@ -31,12 +31,9 @@ class SeanseCreator extends React.Component {
       movie: this.state.movie,
       bookings: this.state.bookings,
     };
-    console.log(typeof this.state.date);
     let token = localStorage.getItem("jwtToken");
     let history = this.props.history;
-    console.log(this.props);
     this.props.createSeanses(newSeanse, token, history);
-    console.log(newSeanse, "Data send to api");
   };
 
   getDate = (data) => {

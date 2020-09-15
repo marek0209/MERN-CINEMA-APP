@@ -21,15 +21,22 @@ class MovieSeanceBooking extends React.Component {
     e.persist();
     let copy = this.state.bookings;
     let atr = e.target.dataset;
-    console.log(atr.col, atr.row, atr.booked);
     let value = atr.booked === "true";
-    copy[atr.row][atr.col].isBooked = !value;
-    this.setState({ bookings: copy });
-    console.log(this.state.bookings, "click");
-  };
-
-  reserevedSeatsClick = (e) => {
-    console.log("sorry... this seats is reserved");
+    if (value === true) {
+      if (copy[atr.row][atr.col].isBookedBy !== this.props.auth.user.email) {
+        this.setState({ errors: "this seat was resereved by another user" });
+      } else {
+        this.setState({ errors: "" });
+        copy[atr.row][atr.col].isBookedBy = "";
+        copy[atr.row][atr.col].isBooked = !value;
+        this.setState({ bookings: copy });
+      }
+    } else {
+      this.setState({ errors: "" });
+      copy[atr.row][atr.col].isBookedBy = this.props.auth.user.email;
+      copy[atr.row][atr.col].isBooked = !value;
+      this.setState({ bookings: copy });
+    }
   };
 
   conditionalRender = (exist, booked, row, col) => {
@@ -38,7 +45,7 @@ class MovieSeanceBooking extends React.Component {
         className={`${exist ? "existingChair" : "notExistingChair"} ${
           booked ? "booked" : ""
         }`}
-        onClick={this.seatsClick}
+        onClick={exist ? this.seatsClick : undefined}
         data-exist={exist}
         data-booked={booked}
         data-row={row}
@@ -48,24 +55,21 @@ class MovieSeanceBooking extends React.Component {
   };
 
   onSubmit = (e) => {
-    console.log(this.state);
     let id = this.props.seance._id;
     let bookings = this.state.bookings;
     let token = localStorage.getItem("jwtToken");
     let history = this.props.history;
-    // console.log(id, bookings, token, "history", history);
     this.props.updateSeanseAction(id, bookings, token, history);
-    // this.props.history.push("/rooms");
   };
 
   render() {
     return (
       <>
-        {/* <h3>{this.props.messages}</h3> */}
         <h3>
           <Moment date={this.props.seance.date} format="DD-MM-YYYY" />
         </h3>
         <h3>{this.props.seance.hour}</h3>
+        <h3>{this.state.errors}</h3>
         {this.state.bookings.map((row, rowIndex) => (
           <div key={rowIndex} className="array-row">
             {row.map((chair, chairIndex) => (
@@ -106,7 +110,9 @@ class MovieSeanceBooking extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
 
 export default withRouter(
   connect(mapStateToProps, { updateSeanseAction })(MovieSeanceBooking)

@@ -16,7 +16,6 @@ class MovieSeances extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props, "did");
     const { fetchMovieSeancesAction } = this.props;
     let id = this.props.location.state.id;
     fetchMovieSeancesAction(id);
@@ -28,13 +27,10 @@ class MovieSeances extends Component {
   }
   handleClick = (seance) => {
     this.setState({ seance: seance });
-    console.log(seance, "seance");
-
     this.setState({ isClicked: true });
   };
 
   render() {
-    console.log(this.props.seances, "render");
     let seances = this.props.seances;
 
     if (!this.shouldComponentRender()) return <LoadingSpinner />;

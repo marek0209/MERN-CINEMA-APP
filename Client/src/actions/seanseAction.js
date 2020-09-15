@@ -68,7 +68,6 @@ export const updateSeanseAction = (id, bookings, token, history) => (
         throw res.error;
       } else {
         dispatch(UpdateSeansesSuccess(res.data));
-        console.log(res.data);
         history.push("/seanses");
         return res.data;
       }

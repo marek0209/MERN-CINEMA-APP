@@ -30,7 +30,6 @@ class MovieView extends Component {
   }
 
   goToSeance = (e) => {
-    console.log(e.target.dataset.movieid);
     let id = e.target.dataset.movieid;
     this.props.history.push({
       pathname: "/movie-seance",
