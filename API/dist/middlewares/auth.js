@@ -3,13 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var _default = (req, res, next) => {
+var _default = function _default(req, res, next) {
   var token = req.header("Authorization"); // Check for token
 
   if (!token) return res.status(401).json({
@@ -18,7 +18,7 @@ var _default = (req, res, next) => {
 
   try {
     // Verify token
-    var decoded = _jsonwebtoken.default.verify(token, process.env.JWT_SECRET); // Add user from payload
+    var decoded = _jsonwebtoken["default"].verify(token, process.env.JWT_SECRET); // Add user from payload
 
 
     req.user = decoded;
@@ -30,4 +30,4 @@ var _default = (req, res, next) => {
   }
 };
 
-exports.default = _default;
+exports["default"] = _default;

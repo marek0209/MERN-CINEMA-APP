@@ -14,8 +14,10 @@ function notFound(req, res, next) {
 }
 
 function catchAsync(fn) {
-  return (req, res, next) => {
-    fn(req, res, next).catch(err => next(err));
+  return function (req, res, next) {
+    fn(req, res, next)["catch"](function (err) {
+      return next(err);
+    });
   };
 }
 

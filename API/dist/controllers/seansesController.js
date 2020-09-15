@@ -5,7 +5,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _room = _interopRequireDefault(require("../models/room"));
+var _seanse = _interopRequireDefault(require("../models/seanse"));
+
+var _movie = _interopRequireDefault(require("../models/movie"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -16,20 +18,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var _default = {
   findOne: function findOne(req, res, next) {
     return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-      var room;
+      var seanse;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _room["default"].findOne({
-                slug: req.params.slug
+              return _seanse["default"].findOne({
+                _id: req.params.id
               });
 
             case 2:
-              room = _context.sent;
+              seanse = _context.sent;
 
-              if (room) {
+              if (seanse) {
                 _context.next = 5;
                 break;
               }
@@ -38,7 +40,7 @@ var _default = {
 
             case 5:
               return _context.abrupt("return", res.status(200).send({
-                data: room
+                data: seanse
               }));
 
             case 6:
@@ -51,20 +53,20 @@ var _default = {
   },
   findAll: function findAll(req, res) {
     return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
-      var rooms;
+      var movies;
       return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
               _context2.next = 2;
-              return _room["default"].find().sort({
-                createdAt: "desc"
+              return _seanse["default"].find().sort({
+                title: "desc"
               });
 
             case 2:
-              rooms = _context2.sent;
+              movies = _context2.sent;
               return _context2.abrupt("return", res.status(200).send({
-                data: rooms
+                data: movies
               }));
 
             case 4:
@@ -77,29 +79,34 @@ var _default = {
   },
   create: function create(req, res) {
     return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-      var room;
+      var seanse, movie;
       return regeneratorRuntime.wrap(function _callee3$(_context3) {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
-              return new _room["default"]({
-                roomName: req.body.roomName,
-                roomDescription: req.body.roomDescription,
-                roomSeatsPlan: req.body.roomSeatsPlan // roomName: 'Test room',
-                // roomDescription: 'Lorem ipsum',
-                // roomSeatsPlan: [[true,false]]
-
+              return new _seanse["default"]({
+                date: req.body.date,
+                hour: req.body.hour,
+                movie: req.body.movie,
+                bookings: req.body.bookings
               }).save();
 
             case 2:
-              room = _context3.sent;
+              seanse = _context3.sent;
+              _context3.next = 5;
+              return _movie["default"].findOne({
+                _id: req.params.id
+              });
+
+            case 5:
+              movie = _context3.sent;
               return _context3.abrupt("return", res.status(201).send({
-                data: room,
-                message: "Room was created"
+                data: seanse,
+                message: "Seanse was created"
               }));
 
-            case 4:
+            case 7:
             case "end":
               return _context3.stop();
           }
@@ -109,20 +116,20 @@ var _default = {
   },
   update: function update(req, res, next) {
     return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4() {
-      var room;
+      var seanse;
       return regeneratorRuntime.wrap(function _callee4$(_context4) {
         while (1) {
           switch (_context4.prev = _context4.next) {
             case 0:
               _context4.next = 2;
-              return _room["default"].find({
-                slug: req.params.slug
+              return _seanse["default"].findOne({
+                _id: req.params.id
               });
 
             case 2:
-              room = _context4.sent;
+              seanse = _context4.sent;
 
-              if (room) {
+              if (seanse) {
                 _context4.next = 5;
                 break;
               }
@@ -130,19 +137,17 @@ var _default = {
               return _context4.abrupt("return", next());
 
             case 5:
-              room.roomName = req.body.roomName;
-              room.roomDescription = req.body.roomDescription;
-              room.roomSeatsPlan = req.body.roomSeatsPlan;
-              _context4.next = 10;
-              return room.save();
+              seanse.bookings = req.body.bookings;
+              _context4.next = 8;
+              return seanse.save();
 
-            case 10:
+            case 8:
               return _context4.abrupt("return", res.status(200).send({
-                data: room,
-                message: "Room was updated"
+                data: seanse,
+                message: "Seanse was updated"
               }));
 
-            case 11:
+            case 9:
             case "end":
               return _context4.stop();
           }
@@ -152,20 +157,20 @@ var _default = {
   },
   remove: function remove(req, res, next) {
     return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5() {
-      var room;
+      var seanse;
       return regeneratorRuntime.wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
               _context5.next = 2;
-              return _room["default"].findOne({
-                slug: req.params.slug
+              return _seanse["default"].findOne({
+                _id: req.params.id
               });
 
             case 2:
-              room = _context5.sent;
+              seanse = _context5.sent;
 
-              if (room) {
+              if (seanse) {
                 _context5.next = 5;
                 break;
               }
@@ -174,11 +179,11 @@ var _default = {
 
             case 5:
               _context5.next = 7;
-              return room.remove();
+              return seanse.remove();
 
             case 7:
               return _context5.abrupt("return", res.status(200).send({
-                message: "Room was removed"
+                message: "Seanse was removed"
               }));
 
             case 8:

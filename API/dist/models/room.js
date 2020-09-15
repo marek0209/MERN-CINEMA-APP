@@ -3,15 +3,15 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
+exports["default"] = void 0;
 
 var _mongoose = _interopRequireDefault(require("mongoose"));
 
 var _mongooseUrlSlugs = _interopRequireDefault(require("mongoose-url-slugs"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var Room = _mongoose.default.Schema({
+var Room = _mongoose["default"].Schema({
   roomName: {
     type: String,
     require: true
@@ -28,11 +28,11 @@ var Room = _mongoose.default.Schema({
   timestamps: true
 });
 
-Room.plugin((0, _mongooseUrlSlugs.default)("roomName", {
+Room.plugin((0, _mongooseUrlSlugs["default"])("roomName", {
   field: "slug",
   update: true
 }));
 
-var _default = _mongoose.default.model("Room", Room);
+var _default = _mongoose["default"].model("Room", Room);
 
-exports.default = _default;
+exports["default"] = _default;

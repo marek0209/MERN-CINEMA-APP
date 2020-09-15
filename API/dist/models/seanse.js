@@ -13,21 +13,25 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-var Movie = _mongoose["default"].Schema({
-  title: {
+var Seanse = _mongoose["default"].Schema({
+  date: {
     type: String,
     require: true
   },
-  movieDescription: {
+  hour: {
     type: String,
     require: true
   },
-  movieImgUrl: {
-    type: String,
+  movie: {
+    type: _mongoose.Schema.Types.ObjectId,
+    ref: "Movie"
+  },
+  bookings: {
+    type: Array,
     require: true
   }
 });
 
-var _default = _mongoose["default"].model("Movie", Movie);
+var _default = _mongoose["default"].model("Seanse", Seanse);
 
 exports["default"] = _default;
