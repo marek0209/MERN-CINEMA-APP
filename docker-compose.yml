@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  server:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    image: myapp-server
+    container_name: myapp-node-server
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+ 
+  client:
+    build:
+      context: ./Client
+      dockerfile: Dockerfile
+    image: myapp-client
+    stdin_open: true
+    container_name: myapp-react-client
+    command: yarn start
+    depends_on:
+      - server
+    ports:
+      - "3000:3000"
+

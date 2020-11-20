@@ -17,6 +17,7 @@
     "@babel/node": "^7.10.5",
     "@babel/plugin-transform-async-to-generator": "^7.10.4",
     "@babel/preset-env": "^7.11.5",
+    "nodemon": "^2.0.6",
     "rimraf": "^3.0.2"
   },
   "dependencies": {
