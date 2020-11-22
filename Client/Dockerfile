@@ -4,7 +4,7 @@
 FROM node:15.2.0
 
 # Working directory be app
-WORKDIR /usr/app
+WORKDIR /app
 
 COPY package*.json ./
 
