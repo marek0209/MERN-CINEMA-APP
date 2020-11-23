@@ -7,11 +7,11 @@ The project of Cinema application, that allows users to easily book seats and ma
 Development
 
 ## Installation with docker (Recommended)
-1.Clone or download the repo
-2.Open project folder in terminal
-3.Run in your terminal command  "docker-compose build" if your are at linux like os you probably need to type "sudo" before command
-4.If the building was successfully completed you can run "docker-compose up"
-5.Congratulations probably if everything went ok, you should be able to run in your browser http://localhost:3000/
+1. Clone or download the repo
+2. Open project folder in terminal
+3. Run in your terminal command  "docker-compose build" if your are at linux like os you probably need to type "sudo" before
+4. If the building was successfully completed you can run "docker-compose up"
+5. Congratulations, probably if everything went ok, you should be able to run in your browser http://localhost:3000/
 
 ## Installation without docker
 
