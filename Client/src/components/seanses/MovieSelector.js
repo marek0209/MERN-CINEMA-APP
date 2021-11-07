@@ -45,7 +45,7 @@ class MovieSelector extends Component {
           id="exampleFormControlSelect1"
           onChange={this.handleChange}
         >
-          {movies.map((movie) => (
+          {[{ _id: 0, title: "Select title" }, ...movies].map((movie) => (
             <option key={movie._id} value={movie._id}>
               {movie.title}
             </option>

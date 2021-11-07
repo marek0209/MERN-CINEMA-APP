@@ -45,7 +45,7 @@ class RoomView extends Component {
       <>
         <div>{error}</div>
         <select className="select-css" id="room" onChange={this.handleChange}>
-          {rooms.map((room) => (
+          {[{ _id: 0, roomName: "Select room" }, ...rooms].map((room) => (
             <option key={room._id} value={room._id}>
               {room.roomName}
             </option>
