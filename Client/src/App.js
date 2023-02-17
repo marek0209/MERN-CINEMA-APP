@@ -21,6 +21,8 @@ import jwt_decode from "jwt-decode";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import "./App.css";
 
+console.log(process.env.REACT_APP_API_URL);
+
 if (localStorage.jwtToken) {
   // Set auth token header auth
   const token = localStorage.jwtToken;

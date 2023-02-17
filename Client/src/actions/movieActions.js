@@ -10,7 +10,7 @@ import {
 //Create and send new movie to API
 export const createMoviesAction = (movieData, token, history) => (dispatch) => {
   axios
-    .post("http://localhost:5000/api/movies/", movieData, {
+    .post(`${process.env.REACT_APP_API_URL}/movies/`, movieData, {
       headers: {
         Authorization: `${token}`,
       },
@@ -31,7 +31,7 @@ export const createMoviesAction = (movieData, token, history) => (dispatch) => {
 export function fetchMoviesAction() {
   return (dispatch) => {
     dispatch(fetchMoviesPending());
-    fetch("http://localhost:5000/api/movies")
+    fetch(`${process.env.REACT_APP_API_URL}/movies`)
       .then((res) => res.json())
       .then((res) => {
         if (res.error) {

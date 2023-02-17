@@ -54,6 +54,6 @@ app.use("/api/rooms", (0, _rooms["default"])());
 app.use("/api/auth", (0, _auth["default"])());
 app.use("/api/movies", (0, _movies["default"])());
 app.use("/api/seanses", (0, _seanses["default"])());
-app.listen(_config["default"].server.port, function () {
-  console.log("API server works at port:" + _config["default"].server.port);
+app.listen(process.env.PORT || 5005, function () {
+  console.log("API server works at port:" + process.env.PORT);
 });

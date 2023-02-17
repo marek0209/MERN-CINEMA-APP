@@ -9,7 +9,7 @@ export function fetchMovieSeancesAction(id) {
   return (dispatch) => {
     dispatch(fetchMovieSeancesPending());
     axios
-      .get("http://localhost:5000/api/movies/" + id)
+      .get(`${process.env.REACT_APP_API_URL}/movies/` + id)
       .then((res) => {
         dispatch(fetchMovieSeanceSuccess(res.data.seances));
       })

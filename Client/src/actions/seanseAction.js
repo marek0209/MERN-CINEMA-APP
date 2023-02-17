@@ -9,32 +9,31 @@ import {
 } from "./types";
 
 //Create and send new seanse to API
-export const createSeansesAction = (seanseData, token, history) => (
-  dispatch
-) => {
-  axios
-    .post("http://localhost:5000/api/seanses/", seanseData, {
-      headers: {
-        Authorization: `${token}`,
-      },
-    })
-    .then((res) => {
-      if (res.error) {
-        throw res.error;
-      } else {
-        dispatch(createSeansesSuccess(res.data));
-        history.push("/seanses");
-        return res.data;
-      }
-    })
-    .catch((err) => dispatch(createSeansesError(err)));
-};
+export const createSeansesAction =
+  (seanseData, token, history) => (dispatch) => {
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/seanses/`, seanseData, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      })
+      .then((res) => {
+        if (res.error) {
+          throw res.error;
+        } else {
+          dispatch(createSeansesSuccess(res.data));
+          history.push("/seanses");
+          return res.data;
+        }
+      })
+      .catch((err) => dispatch(createSeansesError(err)));
+  };
 
 //Fetch seanses from API
 export function fetchSeansesAction() {
   return (dispatch) => {
     dispatch(fetchSeansesPending());
-    fetch("http://localhost:5000/api/seanses")
+    fetch(`${process.env.REACT_APP_API_URL}/seanses`)
       .then((res) => res.json())
       .then((res) => {
         if (res.error) {
@@ -50,30 +49,29 @@ export function fetchSeansesAction() {
   };
 }
 
-export const updateSeanseAction = (id, bookings, token, history) => (
-  dispatch
-) => {
-  axios
-    .put(
-      "http://localhost:5000/api/seanses/" + id,
-      { bookings: bookings },
-      {
-        headers: {
-          Authorization: `${token}`,
-        },
-      }
-    )
-    .then((res) => {
-      if (res.error) {
-        throw res.error;
-      } else {
-        dispatch(UpdateSeansesSuccess(res.data));
-        history.push("/seanses");
-        return res.data;
-      }
-    })
-    .catch((err) => dispatch(createSeansesError(err)));
-};
+export const updateSeanseAction =
+  (id, bookings, token, history) => (dispatch) => {
+    axios
+      .put(
+        `${process.env.REACT_APP_API_URL}/seanses/` + id,
+        { bookings: bookings },
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        if (res.error) {
+          throw res.error;
+        } else {
+          dispatch(UpdateSeansesSuccess(res.data));
+          history.push("/seanses");
+          return res.data;
+        }
+      })
+      .catch((err) => dispatch(createSeansesError(err)));
+  };
 
 function fetchSeansesPending() {
   return {

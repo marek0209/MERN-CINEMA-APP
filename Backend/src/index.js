@@ -5,7 +5,6 @@ console.log("Secret for JWT: ", process.env.JWT_SECRET);
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import config from "../config/config";
 import rooms from "./routes/rooms";
 import auth from "./routes/auth";
 import movies from "./routes/movies";
@@ -39,6 +38,6 @@ app.use("/api/auth", auth());
 app.use("/api/movies", movies());
 app.use("/api/seanses", seanses());
 
-app.listen(config.server.port, () => {
-  console.log(`API server works at port:` + config.server.port);
+app.listen(process.env.PORT || 5005, () => {
+  console.log(`API server works at port:` + process.env.PORT);
 });

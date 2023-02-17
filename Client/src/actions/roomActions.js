@@ -9,7 +9,7 @@ import {
 
 export const createRoomsAction = (roomData, token, history) => (dispatch) => {
   axios
-    .post("http://localhost:5000/api/rooms/", roomData, {
+    .post(`${process.env.REACT_APP_API_URL}/rooms/`, roomData, {
       headers: {
         Authorization: `${token}`,
       },
@@ -30,7 +30,7 @@ export const createRoomsAction = (roomData, token, history) => (dispatch) => {
 export function fetchRoomsAction() {
   return (dispatch) => {
     dispatch(fetchRoomsPending());
-    fetch("http://localhost:5000/api/rooms")
+    fetch(`${process.env.REACT_APP_API_URL}/rooms`)
       .then((res) => res.json())
       .then((res) => {
         if (res.error) {
